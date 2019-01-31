@@ -43,7 +43,6 @@
 #include <stdlib.h>
 #include <ctype.h>
 #include <string.h>
-#include <strings.h>
 #include <errno.h>
 #include <stdarg.h>
 #include <fcntl.h>
@@ -136,7 +135,7 @@ int main(int argc, char **argv, char **env)
 
 int conecta_tcpip(St_email *email)
 {
-	bzero((char *) &email->Socket.serv_addr, sizeof(email->Socket.serv_addr));
+	memset((char *) &email->Socket.serv_addr, 0, sizeof(email->Socket.serv_addr));
 
 	email->Socket.serv_addr.sin_family      = AF_INET;
 	email->Socket.serv_addr.sin_addr.s_addr = inet_addr(email->SMTP_Conf.ip);
