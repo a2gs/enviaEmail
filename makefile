@@ -17,7 +17,7 @@ RM = rm -rf
 all: clean compile
 
 compile:
-	$(CC) -o $(BIN)/envia_email $(SRC)/envia_email.c $(SRC)/ee_utils.c $(CC_FLAGS) $(LIBS) $(INC)
+	$(CC) -o $(BIN)/envia_email $(SRC)/envia_email.c $(SRC)/ee_utils.c $(CFLAGS) $(LIBS) $(INC)
 
 clean:
 	-$(RM) $(BIN)/*
