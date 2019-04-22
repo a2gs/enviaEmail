@@ -6,7 +6,7 @@
  *
  * Conjunto de funcoes para envio de email em C POSIX
  *
- * CODIGO LIVRE (Free Code)
+ * MIT License
  *
  *
  *
