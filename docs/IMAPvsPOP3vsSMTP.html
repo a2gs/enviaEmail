@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en-US" prefix="og: http://ogp.me/ns# fb: http://ogp.me/ns/fb#">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+
+<title>IMAP vs POP3 vs SMTP: What to Use and Why - Mailtrap Blog</title>
+<style id="jetpack-custom-fonts-css">.wf-active body{font-family:"Open Sans",sans-serif}.wf-active code, .wf-active kbd, .wf-active pre, .wf-active samp{font-family:"Open Sans",sans-serif}.wf-active .main-navigation ul > li + li:before{font-family:"Open Sans",sans-serif}.wf-active .entry-meta > span{font-family:"Open Sans",sans-serif}.wf-active .page-links{font-family:"Open Sans",sans-serif}.wf-active .tagcloud a, .wf-active .tags-links a{font-family:"Open Sans",sans-serif}.wf-active .post-navigation span{font-family:"Open Sans",sans-serif}.wf-active .entry-content{font-family:"Open Sans",sans-serif}.wf-active .entry-content .more-link{font-family:"Open Sans",sans-serif}.wf-active .entry-content blockquote cite{font-family:"Open Sans",sans-serif}.wf-active code, .wf-active kbd, .wf-active pre{font-family:"Open Sans",sans-serif}.wf-active .gallery-caption, .wf-active .wp-caption-text{font-family:"Open Sans",sans-serif}.wf-active .entry-content fieldset legend{font-family:"Open Sans",sans-serif}.wf-active .entry-content label{font-family:"Open Sans",sans-serif}.wf-active .entry-content input, .wf-active .entry-content textarea{font-family:"Open Sans",sans-serif}.wf-active .comments-title span a{font-family:"Open Sans",sans-serif}.wf-active .comment-metadata, .wf-active .comment-reply-link{font-family:"Open Sans",sans-serif}.wf-active .comment-navigation a{font-family:"Open Sans",sans-serif}.wf-active .comment-respond form label{font-family:"Open Sans",sans-serif}.wf-active .comment-respond input[type="text"], .wf-active .comment-respond textarea{font-family:"Open Sans",sans-serif}.wf-active .comment-respond input[type="submit"]{font-family:"Open Sans",sans-serif}.wf-active .comment-list #cancel-comment-reply-link{font-family:"Open Sans",sans-serif}.wf-active .search-field{font-family:"Open Sans",sans-serif}.wf-active .posts-navigation span{font-family:"Open Sans",sans-serif}.wf-active #infinite-handle span{font-family:"Open Sans",sans-serif}.wf-active .widget{font-family:"Open Sans",sans-serif}.wf-active .widget_authors a strong, .wf-active .widget_recent_comments .comment-author-link, .wf-active .widget_recent_comments .comment-author-link a{font-family:"Open Sans",sans-serif}.wf-active .widget .search-field{font-family:"Open Sans",sans-serif}.wf-active .widget_recent_entries a, .wf-active .widget_recent_entries a:focus, .wf-active .widget_recent_entries a:hover, .wf-active .widget_recent_entries a:visited{font-family:"Open Sans",sans-serif}.wf-active .widget_rss li a{font-family:"Open Sans",sans-serif}.wf-active .site-info{font-family:"Open Sans",sans-serif}@media screen and (max-width: 1000px){.wf-active .mobile-search .search-field{font-family:"Open Sans",sans-serif}}.wf-active h1, .wf-active h2, .wf-active h3, .wf-active h4, .wf-active h5, .wf-active h6{font-family:"Open Sans",sans-serif;font-style:normal;font-weight:600}.wf-active .site-title{font-weight:600;font-style:normal}.wf-active .site-description{font-style:normal;font-weight:600}.wf-active .entry-title{font-weight:600;font-style:normal}.wf-active .post-navigation h4{font-weight:600;font-style:normal}.wf-active .entry-content h1, .wf-active .entry-content h2, .wf-active .entry-content h3, .wf-active .entry-content h4, .wf-active .entry-content h5{font-weight:600;font-style:normal}.wf-active .entry-content h6{font-weight:600;font-style:normal}.wf-active .entry-content h1{font-style:normal;font-weight:600}.wf-active .entry-content h2{font-style:normal;font-weight:600}.wf-active .entry-content h3{font-style:normal;font-weight:600}.wf-active .entry-content h4{font-style:normal;font-weight:600}.wf-active .entry-content h5{font-style:normal;font-weight:600}.wf-active .entry-content h6{font-family:"Open Sans",sans-serif;font-weight:600;font-style:normal}.wf-active .entry-content th{font-weight:600;font-style:normal}.wf-active .comment-reply-title, .wf-active .comments-title{font-weight:600;font-style:normal}.wf-active .page-title{font-family:"Open Sans",sans-serif;font-weight:600;font-style:normal}.wf-active .widget-title{font-family:"Open Sans",sans-serif;font-weight:600;font-style:normal}@media screen and (max-width: 600px){.wf-active .site-title{font-style:normal;font-weight:600}}@media screen and (max-width: 600px){.wf-active .entry-title{font-style:normal;font-weight:600}}@media screen and (max-width: 500px){.wf-active .comment-reply-title, .wf-active .comments-title{font-style:normal;font-weight:600}}@media screen and (max-width: 500px){.wf-active .entry-title{font-style:normal;font-weight:600}}@media screen and (max-width: 500px){.wf-active .entry-content h1{font-style:normal;font-weight:600}}@media screen and (max-width: 500px){.wf-active .entry-content h2{font-style:normal;font-weight:600}}@media screen and (max-width: 500px){.wf-active .entry-content h3{font-style:normal;font-weight:600}}@media screen and (max-width: 500px){.wf-active .entry-content h4{font-style:normal;font-weight:600}}@media screen and (max-width: 500px){.wf-active .entry-content h5{font-style:normal;font-weight:600}}@media screen and (max-width: 440px){.wf-active .comment-reply-title, .wf-active .comments-title{font-style:normal;font-weight:600}}@media screen and (max-width: 440px){.wf-active .entry-title{font-style:normal;font-weight:600}}</style>
+<!-- Jetpack Site Verification Tags -->
+
+
+<style type="text/css">
+img.wp-smiley,
+img.emoji {
+	display: inline !important;
+	border: none !important;
+	box-shadow: none !important;
+	height: 1em !important;
+	width: 1em !important;
+	margin: 0 .07em !important;
+	vertical-align: -0.1em !important;
+	background: none !important;
+	padding: 0 !important;
+}
+</style>
+
+<style id='lovecraft-style-inline-css' type='text/css'>
+.cat-links, .tags-links { clip: rect(1px, 1px, 1px, 1px); height: 1px; position: absolute; overflow: hidden; width: 1px; }
+</style>
+
+		
+<!-- START - Open Graph for Facebook, Google+ and Twitter Card Tags 2.2.6.1 -->
+ <!-- Facebook Open Graph -->
+  <meta property="og:locale" content="en_US"/>
+  <meta property="og:site_name" content="Mailtrap Blog"/>
+  <meta property="og:title" content="IMAP vs POP3 vs SMTP: What to Use and Why - Mailtrap Blog"/>
+  <meta property="og:url" content="https://blog.mailtrap.io/imap-pop3-smtp/"/>
+  <meta property="og:type" content="article"/>
+  <meta property="og:description" content="SMTP is a protocol to send emails, while POP3 and IMAP are meant to receive electronic messages. Learn more about email protocols to know which one to use"/>
+  <meta property="og:image" content="https://blog.mailtrap.io/wp-content/uploads/2019/07/test-emails-3@1x-1.png"/>
+  <meta property="og:image:url" content="https://blog.mailtrap.io/wp-content/uploads/2019/07/test-emails-3@1x-1.png"/>
+  <meta property="og:image:secure_url" content="https://blog.mailtrap.io/wp-content/uploads/2019/07/test-emails-3@1x-1.png"/>
+  <meta property="article:published_time" content="2019-08-01T14:03:41+00:00"/>
+  <meta property="article:modified_time" content="2019-08-15T08:58:56+00:00" />
+  <meta property="og:updated_time" content="2019-08-15T08:58:56+00:00" />
+  <meta property="article:section" content="General"/>
+ <!-- Google+ / Schema.org -->
+  <meta itemprop="name" content="IMAP vs POP3 vs SMTP: What to Use and Why - Mailtrap Blog"/>
+  <meta itemprop="headline" content="IMAP vs POP3 vs SMTP: What to Use and Why - Mailtrap Blog"/>
+  <meta itemprop="description" content="SMTP is a protocol to send emails, while POP3 and IMAP are meant to receive electronic messages. Learn more about email protocols to know which one to use"/>
+  <meta itemprop="image" content="https://blog.mailtrap.io/wp-content/uploads/2019/07/test-emails-3@1x-1.png"/>
+  <meta itemprop="datePublished" content="2019-08-01"/>
+  <meta itemprop="dateModified" content="2019-08-15T08:58:56+00:00" />
+  <meta itemprop="author" content="Yevgen Tsvetukhin"/>
+  <!--<meta itemprop="publisher" content="Mailtrap Blog"/>--> <!-- To solve: The attribute publisher.itemtype has an invalid value -->
+ <!-- Twitter Cards -->
+  <meta name="twitter:title" content="IMAP vs POP3 vs SMTP: What to Use and Why - Mailtrap Blog"/>
+  <meta name="twitter:url" content="https://blog.mailtrap.io/imap-pop3-smtp/"/>
+  <meta name="twitter:description" content="SMTP is a protocol to send emails, while POP3 and IMAP are meant to receive electronic messages. Learn more about email protocols to know which one to use"/>
+  <meta name="twitter:image" content="https://blog.mailtrap.io/wp-content/uploads/2019/07/test-emails-3@1x-1.png"/>
+  <meta name="twitter:card" content="summary_large_image"/>
+ <!-- SEO -->
+ <!-- Misc. tags -->
+ <!-- is_singular | yoast_seo -->
+<!-- END - Open Graph for Facebook, Google+ and Twitter Card Tags 2.2.6.1 -->
+	
+</head>
+
+<body class="post-template-default single single-post postid-988 single-format-standard custom-background group-blog categories-hidden tags-hidden">
+<div id="page" class="hfeed site">
+	<a class="skip-link screen-reader-text" href="#content">Skip to content</a>
+
+<header class="header">
+
+</header>
+
+	
+	<div id="content" class="site-content">
+
+	<div id="primary" class="content-area">
+		<main id="main" class="site-main" role="main">
+
+		
+			
+<article id="post-988" class="post-988 post type-post status-publish format-standard hentry category-general">
+	<div class="entry-wrapper">
+		<header class="entry-header">
+			<h1 class="entry-title">Difference Between IMAP, POP3, and SMTP Email Protocols</h1>
+							<div class="entry-meta">
+					<span class="posted-on">On <a href="https://blog.mailtrap.io/imap-pop3-smtp/" rel="bookmark"><time class="entry-date published" datetime="2019-08-01T14:03:41+00:00">August 1, 2019</time><time class="updated" datetime="2019-08-15T08:58:56+00:00">August 15, 2019</time></a></span><span class="byline"> By <span class="author vcard"><a class="url fn n" href="https://blog.mailtrap.io/author/rwmailtrap/">Yevgen Tsvetukhin</a></span></span><span class="cat-links">In <a href="https://blog.mailtrap.io/category/general/" rel="category tag">General</a></span>				</div><!-- .entry-meta -->
+					</header><!-- .entry-header -->
+
+		<div class="entry-content">
+			
+<p>Basically, three parties are involved in transferring an electronic message. These are the sender, recipient, and a mail server. The email goes from the sender to the mail server, which then lets the recipient get the message. What is the role of email protocol here? It establishes connections between transferring parties. So, one protocol is needed to send, and one &#8211; to receive. Today, we’ll review the three most commonly used email protocols &#8211; SMTP, POP3, IMAP &#8211; and help you choose the right option for your purposes.&nbsp;</p>
+
+
+
+<p style="font-size:30px"><strong>SMTP &#8211; a protocol to send emails</strong></p>
+
+
+
+<h2>What is SMTP?</h2>
+
+
+
+<p>Simple Mail Transfer Protocol (SMTP) establishes how the message gets from the sender to the email server. Also, it is used by a mail transfer agent (MTA) to deliver email between servers &#8211; mail relaying. SMTP is meant only to send emails.</p>
+
+
+
+<h3>How SMTP works</h3>
+
+
+
+<p>SMTP workflow consists of commands sent by the SMTP client and corresponding replies by the SMTP server. Commands are text-based like HELO, MAIL FROM, and <a rel="nofollow" href="https://tools.ietf.org/html/rfc5321#section-4.1">others</a>. Also, there can be used extended SMTP (ESMTP) commands like EHLO, STARTTLS, etc. Replies are represented by numeric completion codes like 220, 250, 354, and so on. For more on <a href="https://blog.mailtrap.io/smtp-commands-and-responses/">SMTP commands and response codes</a>, read our dedicated blog post.</p>
+
+
+
+<p>Any SMTP conversation consists of three stages:</p>
+
+
+
+<ul><li>&nbsp;<strong>SMTP handshake</strong> &#8211;  The SMTP client establishes a TCP connection to the SMTP server. Once the server replies with 250, the handshaking starts. The stage ends when the server confirms the recipient’s address. </li></ul>
+
+
+
+<ul><li><strong>Email transfer</strong> &#8211;  Code 354, as a response to the DATA command, launches the transfer of the email. Once the server gets a final dot, the message is transferred.&nbsp; </li></ul>
+
+
+
+<ul><li><strong>Termination</strong> &#8211;  Client and server say goodbye to each other using the command QUIT and the code 221 respectively.&nbsp;</li></ul>
+
+
+
+<p>Let’s take a look at the interaction between the SMTP client and server through a simple email delivery example:</p>
+
+
+
+<table class="wp-block-table"><tbody><tr><th width="20%"><br></th><th width="35%">Command or Response                                                                                                                                                                                                     </th><th width="45%">What it means</th></tr><tr><td>Client:                                         </td><td><code>HELO client.rocket.com<br></code>or<code><br>EHLO client.rocket.com</code></td><td>Identifies itself and initiates the SMTP conversation. The domain name or IP address is usually sent as an argument together with the command.&nbsp;EHLO<em> is an alternative command to start the conversation. It identifies that the client uses the ESMTP protocol.</em></td></tr><tr><td>Server:</td><td><code>250</code></td><td>OK or completed</td></tr><tr><td>Client:&nbsp;</td><td><code>MAIL FROM:&lt;andy@rocket.com&gt;</code></td><td>Says that a new mail transaction is starting and specifies the sender</td></tr><tr><td>Server:</td><td><code>250</code></td><td>OK or completed</td></tr><tr><td>Client:&nbsp;</td><td><code>RCPT TO:&lt;jane@gmail.com&gt;</code></td><td>Specifies the recipient. (For multiple recipients, the command will be repeated for each recipient’s address)</td></tr><tr><td>Server:</td><td><code>250</code></td><td>OK or completed</td></tr><tr><td>Client:&nbsp;</td><td><code>DATA</code></td><td>Initiates the transfer of the email contents including body text, attachments, and so on.</td></tr><tr><td>Server:</td><td><code>354</code></td><td>Lets the client start the content transfer</td></tr><tr><td>Client:&nbsp;</td><td><code>Date: Wed, 24 July 2019 16:03:23</code></td><td>Date</td></tr><tr><td>Client:&nbsp;</td><td><code>From: andy@rocket.com</code></td><td>From header</td></tr><tr><td>Client:&nbsp;</td><td><code>Subject: How SMTP works</code></td><td>Subject line</td></tr><tr><td>Client:&nbsp;</td><td><code>To: jane@gmail.com</code></td><td>To header</td></tr><tr><td>Client:&nbsp;</td><td><br></td><td>Empty line</td></tr><tr><td>Client:&nbsp;</td><td><code>Hope, it’s not boring:)</code></td><td>Body text</td></tr><tr><td>Client:&nbsp;</td><td><code>.</code></td><td>Once the message contents have been transferred, a single dot must be sent in a line to terminate.</td></tr><tr><td>Server:</td><td><code>250</code></td><td>OK or completed</td></tr><tr><td>Client:&nbsp;</td><td><code>QUIT</code></td><td>Request to terminate the SMTP conversation</td></tr><tr><td>Server:</td><td><code>221</code></td><td>Closes transmission channel</td></tr></tbody></table>
+
+
+
+<h3>SMTP ports</h3>
+
+
+
+<ul><li>25</li></ul>
+
+
+
+<p>This is a standard port for SMTP mail relaying &#8211; email transition between email servers. Cloud hosting providers and many email clients block the port 25 to combat email spamming. They give precedence to secure connections like 587 or 465.</p>
+
+
+
+<ul><li>465</li></ul>
+
+
+
+<p>Port 465 was deprecated for some time. Now, it’s back to use for SMTP communications. Moreover, now it is an officially recognized port that assumes implicit encryption.</p>
+
+
+
+<ul><li>587</li></ul>
+
+
+
+<p>A default SMTP port 587 is the option to submit an email for routing. TLS encryption ensures the secure submission of the email. Almost all mail servers support 587.</p>
+
+
+
+<ul><li>2525</li></ul>
+
+
+
+<p>It is not an official SMTP port, but almost any email service provider supports it. 2525 is secured similarly to 587 and is often used in lieu of it. So, if the use of the default SMTP port causes some trouble, try out 2525.</p>
+
+
+
+<p style="font-size:30px"><strong>IMAP4 and POP3 &#8211; protocols to receive emails</strong></p>
+
+
+
+<p>Once an email is already at the mail server, either IMAP or POP3 is used to retrieve it from there.</p>
+
+
+
+<h2>What is IMAP?</h2>
+
+
+
+<p>Internet Message Access Protocol (IMAP) is a communication standard to access email stored on the server. Today, its fourth version is in use, so the name of IMAP4 is also widespread. The key feature of this protocol is that the message remains on the server. It will be downloaded as soon as the recipient picks it to open. So, IMAP gets access to the email from any device or location if authorized. This is the go-to option of most email service providers so far.</p>
+
+
+
+<h3>How IMAP works</h3>
+
+
+
+<p>Here is the basic flow of the IMAP client/server interaction:&nbsp;</p>
+
+
+
+<ul><li>A recipient’s email client connects to the server the message is stored on</li><li>The recipient can see the headers of all the messages on the server</li><li>If the recipient chooses a particular message to read, IMAP downloads it on demand</li></ul>
+
+
+
+<p>Under the hood, a primitive IMAP connection may look as follows:</p>
+
+
+
+<table class="wp-block-table"><tbody><tr><th width="35%">Client command</th><th width="65%">Description</th></tr><tr><td><code>LOGIN</code></td><td>Opens the IMAP connection</td></tr><tr><td><code>LIST<br>CREATE<br>RENAME</code><br>and other commands</td><td>Commands that allow you to manage mailbox&nbsp;</td></tr><tr><td><code>SELECT</code></td><td>Defines the current mailbox and opens an IMAP session</td></tr><tr><td><code>LIST<br>DOWNLOAD<br>DELETE</code><br>and other commands</td><td>Commands that allow you to manage messages</td></tr><tr><td><code>CLOSE</code></td><td>Closes the IMAP session. If you want to open a new session, you can do this by setting another current mailbox. Once the new session is opened, the IMAP server permanently updates the messages according to the previous session.&nbsp;</td></tr><tr><td><code>LOGOUT</code></td><td>Closes the IMAP connection</td></tr></tbody></table>
+
+
+
+<p><a rel="nofollow" href="https://tools.ietf.org/html/rfc3501#section-6"><em>Here</em></a><em> you can find a full selection of client commands.</em></p>
+
+
+
+<p>Darn! We forgot about the <a href="https://tools.ietf.org/html/rfc3501#section-7" rel="nofollow">IMAP server responses</a>. There are three forms of them:</p>
+
+
+
+<ul><li><strong>Status Responses</strong> (<code>OK</code>, <code>NO</code>, <code>BAD</code>, <code>PREAUTH</code>, and <code>BYE</code>)</li></ul>
+
+
+
+<p>They may include a response code like <code>ALERT</code> or <code>CAPABILITY</code>.&nbsp; A response code gives additional information beyond the status response condition.&nbsp;</p>
+
+
+
+<ul><li><strong>Server Data</strong></li></ul>
+
+
+
+<p>These responses include Server and Mailbox Status (<code>CAPABILITY</code>, <code>LIST</code>, etc.), Mailbox Size (<code>EXISTS</code> and <code>RECENT</code>), and Message Status (<code>EXPUNGE</code> and <code>FETCH</code>)</p>
+
+
+
+<ul><li><strong>Command Continuation Request</strong></li></ul>
+
+
+
+<p>This response confirms that the server is ready to accept the continuation of the client&#8217;s command. It is by a &#8220;<code>+</code>&#8221; token.</p>
+
+
+
+<h3>IMAP ports</h3>
+
+
+
+<ul><li>143&nbsp;</li></ul>
+
+
+
+<p>A default IMAP port without encryption</p>
+
+
+
+<ul><li>993</li></ul>
+
+
+
+<p>A secured SSL/TLS port used by most email service providers. Also, it is often referred to as IMAPS.&nbsp;</p>
+
+
+
+<h2>What is POP3?</h2>
+
+
+
+<p>IMAP4 is a sophisticated email protocol. Post Office Protocol is a simpler way to access mailboxes. So far, the version 3 of this standard is widely used &#8211; therefore it is POP3. Users love this protocol for its low dependency on Internet connections. POP3 downloads emails from the server to the client, so you can read them even offline. The server deletes messages once they are retrieved. This is the default and common setting, but there is the option to enforce a site policy regarding email retention on the server. At the same time, even if the POP3 client contains configuration options to store mail on the server, the latter in fact won’t support this.&nbsp;</p>
+
+
+
+<h3>How POP3 works</h3>
+
+
+
+<p>POP3 connection consists of the four steps:&nbsp;</p>
+
+
+
+<ul><li>The client connects to the server (AUTHORIZATION State)</li><li>The client retrieves email (TRANSACTION State)</li><li>The server deletes the stored messages (UPDATE State)</li><li>The client disconnects from the server</li></ul>
+
+
+
+<p>Let’s take a look under the hood of a POP3 session as well.</p>
+
+
+
+<table class="wp-block-table"><tbody><tr><th width="25%"><br></th><th width="30%">Command or Response</th><th width="45%">What it means</th></tr><tr><td>Server:</td><td colspan="2">The server is waiting for connection on TCP port 110</td></tr><tr><td>Client:&nbsp;</td><td colspan="2">The client establishes a TCP connection.&nbsp;</td></tr><tr><td>Server:</td><td><code>+OK POP3 server ready &lt;example.server.com&gt;</code></td><td>If everything is OK, the server’s response will be consistent. Otherwise, it will show <code>-ERR</code></td></tr><tr><td>Client:&nbsp;</td><td><code>APOP mrose c4c9334bac560ecc979e58001b3e22fb</code></td><td>Provides origin identification and replay protection for the session. mrose is the name parameter and <code>c4c9334bac560ecc979e58001b3e22fb</code> is the digest parameter. They identify a mailbox and a MD5 digest string</td></tr><tr><td>Server:</td><td><code>+OK&nbsp;</code></td><td>If everything is OK, the server’s response will be consistent. Otherwise, it will show <code>-ERR</code></td></tr><tr><td>Client:&nbsp;</td><td><code>STAT</code></td><td>Now, the session enters the TRANSACTION state. STAT command asks how many messages are currently in the mailbox and their size in octets</td></tr><tr><td>Server:</td><td><code>+OK 1 334</code></td><td>Maildrop has one message of 334 octets</td></tr><tr><td>Client:&nbsp;</td><td><code>DELE 1</code></td><td>Deletes the message</td></tr><tr><td>Server:</td><td><code>+OK message 1 deleted</code></td><td>If everything is OK, the server’s response will be consistent. Otherwise, it will show <code>-ERR</code></td></tr><tr><td>Client:&nbsp;</td><td><code>QUIT</code></td><td>Once the session is over, the client logs off via QUIT command</td></tr><tr><td>Server:</td><td><code>+OK dewey POP3 server signing off (maildrop empty)</code></td><td>If everything is OK, the server’s response will be consistent. Otherwise, it will show -ERR</td></tr><tr><td>Client:&nbsp;</td><td colspan="2">The client closes the TCP connection.&nbsp;</td></tr><tr><td>Server:</td><td colspan="2">The server is waiting for connection on TCP port 110</td></tr></tbody></table>
+
+
+
+<p>We used only two commands (DELE and STAT) that are valid in TRANSACTION state. <a href="https://tools.ietf.org/html/rfc1939#page-5" rel="nofollow">Here</a> you can find more options. As for POP3 responses, they contain a status indicator (+OK or -ERR) and a keyword that may be enhanced with additional information (for example, -ERR no such message, only 2 messages in maildrop).</p>
+
+
+
+<h3>POP3 ports</h3>
+
+
+
+<ul><li>110&nbsp;</li></ul>
+
+
+
+<p>A default POP3 port without encryption</p>
+
+
+
+<ul><li>995</li></ul>
+
+
+
+<p>A secured SSL/TLS port that is often referred to as POP3S.&nbsp;</p>
+
+
+
+<h2>IMAP or POP3 &#8211; which protocol should I choose?&nbsp;</h2>
+
+
+
+<p>First, we thought on making a table with a comparison of the pros and cons of IMAP vs. POP3. But this idea proved untenable since different users would have different demands as for the email protocol standards. So, we decided to set it up this way instead.<br></p>
+
+
+
+<table class="wp-block-table"><tbody><tr><th width="50%">Pick IMAP4 if</th><th>Pick POP3 if</th></tr><tr><td><li>you need access to mail from different devices <br><li>you need to organize your mail in folders or some sort of hierarchy<br><li>you have no limitation as for the server storage capacity<br><li>you have a constant stable Internet connection<br><li>you need fast access to your mail</td><td><li>your Internet connection is unstable or even unavailable<br><li>you care much of your privacy since no copies are left on the server after you received the email<br><li>you’re the only person with access to your mail and use a single device for it </td></tr></tbody></table>
+
+
+
+<h2>How an email gets from a sender to a recipient&nbsp;</h2>
+
+
+
+<p>Now, you know what each email protocol is used for. Let’s map a full picture of how an electronic message can get from a sender (bruce@sender.com) to a recipient (jane@recipient.com).&nbsp;</p>
+
+
+
+<ul><li>Sender’s email client connects to the SMTP server (for example, smtp.gmail.com)</li><li>The SMTP server authenticates the recipient’s email address using DNS records (more about email authentication you can read in our dedicated blog posts on <a href="https://blog.mailtrap.io/spf-records-explained/">SPF</a>, <a href="https://blog.mailtrap.io/dkim/">DKIM</a>, and <a href="https://blog.mailtrap.io/dmarc-explained/">DMARC</a>)</li><li>Once the Gmail SMTP server authorized the recipient, it sends the email to the SMTP server of recipient.com</li><li>Recipient.com’s SMTP server verifies whether jane@recipient.com is valid</li><li>The SMTP server forwards the email to the IMAP/POP3 server</li></ul>
+
+
+
+<h3>What is a fake SMTP server and why you might need it?</h3>
+
+
+
+<p>When you need to test whether your app can send emails, the aforementioned journey from sender to recipient can be troublesome. The SMTP server might be configured improperly, or some authentication issues may be revealed, to say nothing about the risk of spamming real users if you’re tweaking an app that is already in production. In this case, a fake or dummy SMTP server is the best option. It’s meant for developers and focused on testing.&nbsp;</p>
+
+
+
+<p>For example, if you use <a href="https://mailtrap.io/">Mailtrap</a>, the email delivery flow will look as follows:</p>
+
+
+
+<ul><li>Sender’s email client connects to the fake SMTP server (smtp.mailtrap.io). Mailtrap provides all the required credentials like port, username, password, authentication method, and TLS. Also, you can copy-paste a ready-to-use integration for most common languages and frameworks.</li></ul>
+
+
+
+<ul><li>The fake SMTP server sends the email to the POP3 server (pop3.mailtrap.io)</li><li>You’ll see your message in your Demo inbox if your app functions properly.&nbsp;</li></ul>
+
+
+
+<p>That’s a brief overview. You can find more details in this <a href="https://blog.mailtrap.io/mailtrap-getting-started-guide/">Mailtrap getting started guide</a>. As you can see, the major benefit of a fake SMTP server is that it responds positively to all SMTP commands. So, you do not need to worry about the functionality of your actual mail server.&nbsp;</p>
+
+
+
+<h2>What is HTTP doing here?&nbsp;</h2>
+
+
+
+<p>To wrap up our story, we must mention the HyperText Transfer Protocol as an option to access emails. HTTP is not actually for mail transfer. However, it can be used to send and receive messages from email web apps like Gmail. Also, it is a good practice to use HTTP for email access in mobile apps. The protocol has two default ports: a non-encrypted 80 and 443 for secure connections. Except for Gmail, the most common services that use HTTP protocol for accessing emails are Hotmail and Yahoo! </p>
+
+</body>
+</html>
